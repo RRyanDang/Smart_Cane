@@ -98,7 +98,7 @@ UB_done_measure:
 
 @ Declaration
 @ Gen-AI was used here to fully understand the mechanic of button debounce
-@ The main thing here is the btn1_lock and btn2_lock. We do not have them at first, but Gen-AI points it out.
+@ The main thing here is the btn1_lock and btn2_lock. We do not have them at first, but Gen-AI points it out to use some kinds of lock system.
 @ Another thing is the addresses of GPIOA and checking of the flag in r0, it is assisted by Gen-AI.
 @ Other than that, the general flow of Button_Handle_Asm is desgined and written by us, which go through many trial-and-errors to end up like below. In the process, Gen-AI is used to constantly provide feedback and suggestion to us.      
 @ line 106 - 146
