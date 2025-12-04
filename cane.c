@@ -71,6 +71,7 @@ static void delay_ms(uint32_t ms)
 // =====================
 // GPIO helpers
 // =====================
+// Gen-AI is used to make and explain this 
 static inline void LED_on(void)   { LED_GPIO->PSOR = (1U << LED_PIN); }
 static inline void LED_off(void)  { LED_GPIO->PCOR = (1U << LED_PIN); }
 
@@ -97,6 +98,7 @@ static void Ultrasonic_trigger(void)
 // =====================
 // Convert echo loop count to distance in cm (rough)
 // =====================
+// Gen-AI is used to validate our math and formula. It does take a few trials until we arrive at this
 static float Cycles_to_cm(uint32_t cycles)
 {
     // one loop ≈ 0.55 µs (empirical)
@@ -110,6 +112,7 @@ static float Cycles_to_cm(uint32_t cycles)
 // =====================
 // Board / pin init
 // =====================
+// Gen-AI is involved in making this method by confirming all the ports and other initalizations
 static void Board_init(void)
 {
     // Enable clocks to PORTA, PORTB, PORTC
@@ -158,6 +161,7 @@ static void Board_init(void)
 // =====================
 // NVIC / PORTA interrupt init
 // =====================
+// Gen-AI creates this
 static void Buttons_Int_Init(void)
 {
     // Clear any pending flags on PORTA
@@ -171,6 +175,7 @@ static void Buttons_Int_Init(void)
 // =====================
 // PORTA IRQ handler
 // =====================
+// Gen-AI is used to create this
 void PORTA_IRQHandler(void)
 {
     uint32_t flags = PORTA->ISFR;
