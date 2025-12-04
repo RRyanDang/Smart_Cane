@@ -1,3 +1,5 @@
+
+
 .syntax unified
     .cpu cortex-m4
     .thumb
@@ -36,6 +38,11 @@ UB_next_sample:
     pop     {r1-r7, pc}      @ Restore registers and return to C code.
 
     .type   UB_measure_once, %function
+
+@ Gen-AI helps with confirmation of the Port C Input Address and Masking
+@ Understanding and code development for measuring the ECHO is heavily inspired from Gen-AI as we have little experience on working with ultrsonic sensor
+@ the initial code structure is desgined by it, but we cross-validate everything and slowly lean toward back to the coding style as in our labs by using commands taught in class wherever possible 
+@ line 47 - 96
 
 UB_measure_once:
     push    {r1-r7, lr}
@@ -88,6 +95,12 @@ UB_done_measure:
     .extern btn1_lock
     .extern btn2_lock
 
+@ Gen-AI was used here to fully understand the mechanic of button debounce
+@ The main thing here is the btn1_lock and btn2_lock. We do not have them at first, but Gen-AI points it out.
+@ Another thing is the addresses of GPIOA and checking of the flag in r0, it is assisted by Gen-AI.
+@ Other than that, the general flow of Button_Handle_Asm is desgined and written by us, which go through many trial-and-errors to end up like below. In the process, Gen-AI is used to constantly provide feedback and suggestion to us.      
+@ line 104 - 144
+
 Button_Handle_Asm:
     push    {r1-r7, lr}
 
@@ -129,6 +142,9 @@ UB_ext_pressed:
     ldrb    r3, [r2]
     eors    r3, r3, #1       @ XOR with 1 toggles the value.
     strb    r3, [r2]         @ Save it back.
+
+@ the structure here is mostly taken from the above button, as the logic remains mostly identical
+@ for the Cycle Sensitivity Mode section (line 180), Gen-AI helps us confirm and suggests improvement from our initial design. We make a few mistakes on this that it doesnt go the same sequence.
 
 UB_skip_ext:
 
